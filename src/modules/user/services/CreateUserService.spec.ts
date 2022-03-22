@@ -1,0 +1,49 @@
+import AppError from 'errors/AppError';
+import FakeHashProvider from '../providers/hashProvider/fakes/FakeHashProvider';
+import FakeUserRepository from '../repositories/fakes/FakeUserRepository';
+import CreateUserService from './CreateUserService';
+
+let fakeUserRepository: FakeUserRepository;
+let fakeHashProvider: FakeHashProvider;
+let createUserService: CreateUserService;
+
+describe('CreateUserService', () => {
+  beforeEach(() => {
+    fakeUserRepository = new FakeUserRepository();
+    fakeHashProvider = new FakeHashProvider();
+
+    createUserService = new CreateUserService(
+      fakeUserRepository,
+      fakeHashProvider,
+    );
+  });
+
+  it('Should be able to create a new user.', async () => {
+    const user = await createUserService.execute({
+      name: 'Hugo Mendonça',
+      email: 'hugomendonca9@gmail.com',
+      password: '12345',
+    });
+
+    expect(user).toHaveProperty('id');
+    expect(user.name).toEqual('Hugo Mendonça');
+    expect(user.email).toEqual('hugomendonca9@gmail.com');
+    expect(user).toEqual(user);
+  });
+
+  it('Should not be able to create a new user with same exist email.', async () => {
+    await fakeUserRepository.create({
+      name: 'Hugo Mendonça',
+      email: 'hugomendonca9@gmail.com',
+      password: '12345',
+    });
+
+    await expect(
+      createUserService.execute({
+        name: 'Hugo Mendonça',
+        email: 'hugomendonca9@gmail.com',
+        password: '12345',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+});
