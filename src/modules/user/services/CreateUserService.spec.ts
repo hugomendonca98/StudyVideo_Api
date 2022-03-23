@@ -54,10 +54,9 @@ describe('CreateUserService', () => {
       password: '12345',
     });
 
-    expect(user.password).toBeUndefined();
+    expect(user).not.toHaveProperty('password');
     expect(user).toHaveProperty('id');
     expect(user.name).toEqual('Hugo Mendonça');
     expect(user.email).toEqual('hugomendonca9@gmail.com');
-    expect(user).toEqual(user);
   });
 });
