@@ -46,4 +46,18 @@ describe('CreateUserService', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
+
+  it('Should not be able to return the created user password.', async () => {
+    const user = await createUserService.execute({
+      name: 'Hugo Mendonça',
+      email: 'hugomendonca9@gmail.com',
+      password: '12345',
+    });
+
+    expect(user.password).toBeUndefined();
+    expect(user).toHaveProperty('id');
+    expect(user.name).toEqual('Hugo Mendonça');
+    expect(user.email).toEqual('hugomendonca9@gmail.com');
+    expect(user).toEqual(user);
+  });
 });
