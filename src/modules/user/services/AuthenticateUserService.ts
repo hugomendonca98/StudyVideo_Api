@@ -1,5 +1,5 @@
 import AppError from '@errors/appError';
-import authConfig from '@modules/config/auth';
+import authConfig from '@config/auth';
 import { sign } from 'jsonwebtoken';
 import IHashProvider from '../providers/hashProvider/interfaces/IHashProvider';
 import IUserRepository from '../repositories/interfaces/IUserRepository';
