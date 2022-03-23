@@ -1,3 +1,4 @@
+import AppError from '@errors/appError';
 import User from '../models/User';
 import IHashProvider from '../providers/hashProvider/interfaces/IHashProvider';
 import IUserRepository from '../repositories/interfaces/IUserRepository';
@@ -15,6 +16,20 @@ export default class CreateUserService {
   ) {}
 
   public async execute({ name, email, password }: IRequest): Promise<User> {
-    // Implementar as regras de negocio.
+    const existUser = await this.userRepository.findByEmail(email);
+
+    if (existUser) {
+      throw new AppError('Já existe um usuário cadastrado com este email.');
+    }
+
+    const hashedPassword = await this.hashProvider.generateHash(password);
+
+    const user = await this.userRepository.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    return user;
   }
 }
