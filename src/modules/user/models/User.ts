@@ -1,7 +1,9 @@
+import Course from '@modules/course/models/Course';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,6 +21,9 @@ class User {
 
   @Column()
   password: string;
+
+  @ManyToOne(() => Course, course => course.user)
+  courses: Course[];
 
   @UpdateDateColumn()
   updated_at: Date;
