@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateCourse1648169332288 implements MigrationInterface {
+export default class CreateLesson1648285432494 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'Course',
+        name: 'Lesson',
         columns: [
           {
             name: 'id',
@@ -15,47 +15,35 @@ export default class CreateCourse1648169332288 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'title',
             type: 'varchar',
           },
           {
-            name: 'image_url',
+            name: 'video_url',
             type: 'varchar',
           },
           {
-            name: 'user_id',
-            type: 'uuid',
-          },
-          {
-            name: 'category_id',
+            name: 'course_id',
             type: 'uuid',
           },
           {
             name: 'created_at',
             type: 'timestamp',
-            default: "datetime('now')",
+            default: 'now()',
           },
           {
             name: 'updated_at',
             type: 'timestamp',
-            default: "datetime('now')",
+            default: 'now()',
           },
         ],
         foreignKeys: [
           {
-            name: 'userToCourse',
-            referencedTableName: 'User',
+            name: 'courseToLesson',
+            referencedTableName: 'Course',
             referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
+            columnNames: ['course_id'],
             onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-          {
-            name: 'categoryToCourse',
-            referencedTableName: 'Category',
-            referencedColumnNames: ['id'],
-            columnNames: ['category_id'],
-            onDelete: 'SET NULL',
             onUpdate: 'CASCADE',
           },
         ],
@@ -64,6 +52,6 @@ export default class CreateCourse1648169332288 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Course');
+    await queryRunner.dropTable('Lesson');
   }
 }
