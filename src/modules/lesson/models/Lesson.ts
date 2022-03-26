@@ -2,10 +2,12 @@ import { Exclude } from 'class-transformer';
 import Course from '@modules/course/models/Course';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('Lesson')
@@ -26,6 +28,12 @@ class Lesson {
   @ManyToOne(() => Course, { eager: true })
   @JoinColumn({ name: 'course_id', referencedColumnName: 'id' })
   course: Course;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @CreateDateColumn()
+  created_at: Date;
 }
 
 export default Lesson;

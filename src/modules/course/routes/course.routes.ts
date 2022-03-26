@@ -1,7 +1,7 @@
 import ensureAuthenticate from '@modules/user/middlewares/ensureAuthenticate';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
-import CourseController from '../controller/CourseController';
+import CourseController from '../controllers/CourseController';
 
 const courseRouter = Router();
 const courseController = new CourseController();

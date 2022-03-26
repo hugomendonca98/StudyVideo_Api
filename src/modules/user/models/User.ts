@@ -20,7 +20,7 @@ class User {
   @Column({ select: false })
   email: string;
 
-  @Column({ select: false })
+  @Column()
   @Exclude()
   password: string;
 
