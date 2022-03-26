@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { instanceToInstance } from 'class-transformer';
+
 import BCryptHashProvider from '../providers/hashProvider/implementations/BCryptHashProvider';
 import UserRepository from '../repositories/UserRepository';
 import AuthenticateUserService from '../services/AuthenticateUserService';
@@ -17,6 +19,6 @@ export default class SessionController {
 
     const auth = await authenticateUserService.execute({ email, password });
 
-    return response.json(auth);
+    return response.json(instanceToInstance(auth));
   }
 }

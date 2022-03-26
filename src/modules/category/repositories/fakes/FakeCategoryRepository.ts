@@ -23,4 +23,16 @@ export default class FakeCategoryRepository implements ICategoryRepository {
 
     return findIndex;
   }
+
+  public async findById(id: string): Promise<Category | undefined> {
+    const findIndex = this.categories.find(
+      findCategory => findCategory.id === id,
+    );
+
+    return findIndex;
+  }
+
+  public async findAll(): Promise<Category[]> {
+    return this.categories;
+  }
 }

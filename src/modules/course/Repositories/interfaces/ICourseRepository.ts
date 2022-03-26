@@ -5,4 +5,5 @@ export default interface ICourseRepository {
   create(data: ICreateCourseDTO): Promise<Course>;
   findByName(name: string): Promise<Course | undefined>;
   findById(id: string): Promise<Course | undefined>;
+  findAll(): Promise<Course[]>;
 }

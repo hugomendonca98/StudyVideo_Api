@@ -1,9 +1,10 @@
+import { Exclude } from 'class-transformer';
 import Course from '@modules/course/models/Course';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -16,13 +17,14 @@ class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ select: false })
   email: string;
 
-  @Column()
+  @Column({ select: false })
+  @Exclude()
   password: string;
 
-  @ManyToOne(() => Course, course => course.user)
+  @OneToMany(() => Course, course => course.user)
   courses: Course[];
 
   @UpdateDateColumn()

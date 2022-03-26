@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { instanceToInstance } from 'class-transformer';
+
 import BCryptHashProvider from '../providers/hashProvider/implementations/BCryptHashProvider';
 import UserRepository from '../repositories/UserRepository';
 import CreateUserService from '../services/CreateUserService';
@@ -21,6 +23,6 @@ export default class UserController {
       password,
     });
 
-    return response.json(user);
+    return response.json(instanceToInstance(user));
   }
 }
