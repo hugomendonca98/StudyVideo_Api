@@ -19,6 +19,10 @@ export default class LessonRepository implements ILessonRespository {
     return lesson;
   }
 
+  public async delete(lesson: Lesson): Promise<void> {
+    this.ormRepository.remove(lesson);
+  }
+
   public async findById(id: string): Promise<Lesson | undefined> {
     const lesson = await this.ormRepository.findOne({
       where: { id },

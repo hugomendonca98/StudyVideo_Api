@@ -17,6 +17,14 @@ export default class FakeLessonRepository implements ILessonRespository {
     return lesson;
   }
 
+  public async delete(lesson: Lesson): Promise<void> {
+    const findLesson = this.lessons.findIndex(
+      lessonFinded => lessonFinded.id === lesson.id,
+    );
+
+    this.lessons.splice(findLesson, 1);
+  }
+
   public async findById(id: string): Promise<Lesson | undefined> {
     const lesson = this.lessons.find(findLesson => findLesson.id === id);
 
