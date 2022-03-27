@@ -7,6 +7,7 @@ import CourseRepository from '../Repositories/CourseRepository';
 import CreateCourseService from '../services/CreateCourseService';
 import ListCoursesService from '../services/ListCoursesService';
 import DeleteCourseService from '../services/DeleteCourseService';
+import UpdateCourseService from '../services/UpdateCourseService';
 
 export default class CourseController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -49,5 +50,29 @@ export default class CourseController {
     await deleteCourseService.execute(id);
 
     return response.json({ message: 'course deleted successfully.' });
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const { name, image_url, category_id, user_id } = request.body;
+
+    const courseRepository = new CourseRepository();
+    const userRepository = new UserRepository();
+    const categoryRepostitory = new CategoryRepository();
+    const updateCourseService = new UpdateCourseService(
+      courseRepository,
+      userRepository,
+      categoryRepostitory,
+    );
+
+    const course = await updateCourseService.execute({
+      name,
+      image_url,
+      category_id,
+      user_id,
+      course_id: id,
+    });
+
+    return response.json(instanceToInstance(course));
   }
 }

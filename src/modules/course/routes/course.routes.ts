@@ -24,4 +24,18 @@ courseRouter.get('/', courseController.index);
 
 courseRouter.delete('/:id', ensureAuthenticate, courseController.delete);
 
+courseRouter.put(
+  '/:id',
+  ensureAuthenticate,
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      image_url: Joi.string().required(),
+      category_id: Joi.string().required(),
+      user_id: Joi.string().required(),
+    },
+  }),
+  courseController.update,
+);
+
 export default courseRouter;
