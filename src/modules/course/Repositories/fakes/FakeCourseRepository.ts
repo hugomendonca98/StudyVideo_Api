@@ -17,6 +17,14 @@ export default class FakeCourseRepository implements ICourseRepository {
     return course;
   }
 
+  public async delete(course: Course): Promise<void> {
+    const findCourse = this.courses.findIndex(
+      courseFinded => courseFinded.id === course.id,
+    );
+
+    this.courses.splice(findCourse, 1);
+  }
+
   public async findByName(name: string): Promise<Course | undefined> {
     const course = this.courses.find(findCourse => findCourse.name === name);
 

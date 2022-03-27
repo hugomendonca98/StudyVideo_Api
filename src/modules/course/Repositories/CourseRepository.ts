@@ -18,6 +18,10 @@ export default class CourseRepository implements ICourseRepository {
     return course;
   }
 
+  public async delete(course: Course): Promise<void> {
+    await this.ormRepository.remove(course);
+  }
+
   public async findByName(name: string): Promise<Course | undefined> {
     const course = await this.ormRepository.findOne({
       where: { name },

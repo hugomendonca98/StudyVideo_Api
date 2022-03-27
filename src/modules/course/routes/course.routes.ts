@@ -22,4 +22,6 @@ courseRouter.post(
 
 courseRouter.get('/', courseController.index);
 
+courseRouter.delete('/:id', ensureAuthenticate, courseController.delete);
+
 export default courseRouter;

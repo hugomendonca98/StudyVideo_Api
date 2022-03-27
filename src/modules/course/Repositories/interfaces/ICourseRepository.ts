@@ -3,6 +3,7 @@ import Course from '@modules/course/models/Course';
 
 export default interface ICourseRepository {
   create(data: ICreateCourseDTO): Promise<Course>;
+  delete(course: Course): Promise<void>;
   findByName(name: string): Promise<Course | undefined>;
   findById(id: string): Promise<Course | undefined>;
   findAll(): Promise<Course[]>;

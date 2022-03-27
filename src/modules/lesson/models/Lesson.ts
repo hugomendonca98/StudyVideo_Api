@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import Course from '@modules/course/models/Course';
 import {
   Column,
@@ -21,8 +20,7 @@ class Lesson {
   @Column()
   video_url: string;
 
-  @Column({ select: false })
-  @Exclude()
+  @Column()
   course_id: string;
 
   @ManyToOne(() => Course, { eager: true })
