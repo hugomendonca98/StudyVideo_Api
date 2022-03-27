@@ -10,6 +10,10 @@ Para rodar a aplicação em modo de desenvolvimento execute o seguinte comando: 
 Para criar as tabelas no banco de dados (SQLITE) basta executar o seguinte comando:
 `yarn typeorm migration:run`
 
+## Executar testes unitarios na aplicação:
+Para rodar os testes bastar executar o seguinte comando:
+`yarn test` ou `npm run test`
+
 ### EndPoints:
 ##### Rota para criar um usuário:
 **POST** http://localhost:3333/signup
@@ -99,3 +103,5 @@ Exemplo de envio via json:
 
 ##### Rota para deletar um curso:
 **DELETE** http://localhost:3333/lesson/id-do-curso
+
+
