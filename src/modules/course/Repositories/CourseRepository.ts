@@ -22,6 +22,12 @@ export default class CourseRepository implements ICourseRepository {
     await this.ormRepository.remove(course);
   }
 
+  public async save(course: Course): Promise<Course> {
+    const courseSaved = await this.ormRepository.save(course);
+
+    return courseSaved;
+  }
+
   public async findByName(name: string): Promise<Course | undefined> {
     const course = await this.ormRepository.findOne({
       where: { name },
