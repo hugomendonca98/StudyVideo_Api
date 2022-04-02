@@ -61,7 +61,7 @@ Exemplo de envio via json:
 	"name": "senai",
 	"image_url": "http://www.google.com",
 	"user_id": "826b6c83-dbd1-4605-9dda-45ad5cdeeaee",
-	"category_id": "63a45cb8-7056-45df-b3f8-7f66990e9608"
+	"category_title": "Category test"
 }
 ```
 
@@ -82,7 +82,7 @@ Exemplo de envio via json:
 	"name": "senai updated",
 	"image_url": "http://www.google.com/updated",
 	"user_id": "826b6c83-dbd1-4605-9dda-45ad5cdeeaee",
-	"category_id": "63a45cb8-7056-45df-b3f8-7f66990e9608"
+	"category_title": "Category test"
 }
 ```
 

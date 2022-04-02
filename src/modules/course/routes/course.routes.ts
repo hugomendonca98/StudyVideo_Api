@@ -13,8 +13,7 @@ courseRouter.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       image_url: Joi.string().required(),
-      category_id: Joi.string().required(),
-      user_id: Joi.string().required(),
+      category_title: Joi.string().required(),
     },
   }),
   courseController.create,

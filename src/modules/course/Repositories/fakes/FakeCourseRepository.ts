@@ -1,13 +1,13 @@
 import { v4 as uuid } from 'uuid';
 
-import ICreateCourseDTO from '@modules/course/dtos/ICreateCourseDTO';
 import Course from '@modules/course/models/Course';
+import ICreateCourseRepositoryDTO from '@modules/course/dtos/ICreateCourseRepositoryDTO';
 import ICourseRepository from '../interfaces/ICourseRepository';
 
 export default class FakeCourseRepository implements ICourseRepository {
   private courses: Course[] = [];
 
-  public async create(data: ICreateCourseDTO): Promise<Course> {
+  public async create(data: ICreateCourseRepositoryDTO): Promise<Course> {
     const course = new Course();
 
     Object.assign(course, { id: uuid() }, data);

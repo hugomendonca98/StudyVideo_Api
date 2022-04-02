@@ -43,7 +43,7 @@ describe('UpdateCourseService', () => {
     const courseUpdated = await updateCourseService.execute({
       name: 'Course Name updated',
       image_url: 'Image Url updated',
-      category_id: category.id,
+      category_title: category.title,
       user_id: user.id,
       course_id: course.id,
     });
@@ -68,7 +68,7 @@ describe('UpdateCourseService', () => {
       updateCourseService.execute({
         name: 'Course Name updated',
         image_url: 'Image Url updated',
-        category_id: category.id,
+        category_title: category.title,
         user_id: user.id,
         course_id: 'course inexist',
       }),
@@ -89,7 +89,7 @@ describe('UpdateCourseService', () => {
       updateCourseService.execute({
         name: 'Course Name updated',
         image_url: 'Image Url updated',
-        category_id: category.id,
+        category_title: category.title,
         user_id: 'user inexist',
         course_id: course.id,
       }),
@@ -114,7 +114,7 @@ describe('UpdateCourseService', () => {
       updateCourseService.execute({
         name: 'Course Name updated',
         image_url: 'Image Url updated',
-        category_id: 'category inexist',
+        category_title: 'category inexist',
         user_id: user.id,
         course_id: course.id,
       }),

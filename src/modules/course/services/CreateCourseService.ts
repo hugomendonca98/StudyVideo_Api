@@ -16,7 +16,7 @@ export default class CreateCourseService {
     name,
     image_url,
     user_id,
-    category_id,
+    category_title,
   }: ICreateCourseDTO): Promise<Course> {
     const existUser = await this.userRepository.findById(user_id);
 
@@ -24,7 +24,9 @@ export default class CreateCourseService {
       throw new AppError('User is not found.');
     }
 
-    const existCategory = await this.categoryRepostitory.findById(category_id);
+    const existCategory = await this.categoryRepostitory.findByTitle(
+      category_title,
+    );
 
     if (!existCategory) {
       throw new AppError('Category is not found.');
@@ -34,7 +36,7 @@ export default class CreateCourseService {
       name,
       image_url,
       user_id,
-      category_id,
+      category_id: existCategory.id,
     });
 
     return course;

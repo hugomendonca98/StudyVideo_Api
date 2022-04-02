@@ -16,7 +16,7 @@ export default class UpdateCourseService {
     name,
     image_url,
     user_id,
-    category_id,
+    category_title,
     course_id,
   }: IUpdateCourseDTO): Promise<Course> {
     const existCourse = await this.courseRepository.findById(course_id);
@@ -31,7 +31,9 @@ export default class UpdateCourseService {
       throw new AppError('User is not found.');
     }
 
-    const existCategory = await this.categoryRepository.findById(category_id);
+    const existCategory = await this.categoryRepository.findByTitle(
+      category_title,
+    );
 
     if (!existCategory) {
       throw new AppError('Category is not found.');
@@ -39,7 +41,7 @@ export default class UpdateCourseService {
 
     existCourse.name = name;
     existCourse.image_url = image_url;
-    existCourse.category_id = category_id;
+    existCourse.category_id = existCategory.id;
     existCourse.user_id = user_id;
 
     const course = await this.courseRepository.save(existCourse);

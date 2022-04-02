@@ -11,7 +11,8 @@ import UpdateCourseService from '../services/UpdateCourseService';
 
 export default class CourseController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, image_url, category_id, user_id } = request.body;
+    const { name, image_url, category_title } = request.body;
+    const user_id = request.user.id;
 
     const courseRepository = new CourseRepository();
     const categoryRepostitory = new CategoryRepository();
@@ -25,7 +26,7 @@ export default class CourseController {
     const course = await createCourseService.execute({
       name,
       image_url,
-      category_id,
+      category_title,
       user_id,
     });
 
@@ -54,7 +55,7 @@ export default class CourseController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, image_url, category_id, user_id } = request.body;
+    const { name, image_url, category_title, user_id } = request.body;
 
     const courseRepository = new CourseRepository();
     const userRepository = new UserRepository();
@@ -68,7 +69,7 @@ export default class CourseController {
     const course = await updateCourseService.execute({
       name,
       image_url,
-      category_id,
+      category_title,
       user_id,
       course_id: id,
     });

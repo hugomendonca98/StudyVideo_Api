@@ -36,7 +36,7 @@ describe('CreateCourseService', () => {
     const course = await createCourseService.execute({
       name: 'Course Name',
       image_url: 'Image Url',
-      category_id: category.id,
+      category_title: category.title,
       user_id: user.id,
     });
 
@@ -55,7 +55,7 @@ describe('CreateCourseService', () => {
       createCourseService.execute({
         name: 'Course Name',
         image_url: 'Image Url',
-        category_id: category.id,
+        category_title: category.title,
         user_id: 'non existing',
       }),
     ).rejects.toBeInstanceOf(AppError);
@@ -72,7 +72,7 @@ describe('CreateCourseService', () => {
       createCourseService.execute({
         name: 'Course Name',
         image_url: 'Image Url',
-        category_id: 'non existing',
+        category_title: 'non existing',
         user_id: user.id,
       }),
     ).rejects.toBeInstanceOf(AppError);
