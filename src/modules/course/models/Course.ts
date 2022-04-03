@@ -8,9 +8,11 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import Lesson from '@modules/lesson/models/Lesson';
 
 @Entity('Course')
 class Course {
@@ -30,6 +32,9 @@ class Course {
   @ManyToOne(() => Category, { eager: true })
   @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
   categories: Category;
+
+  @OneToMany(() => Lesson, lesson => lesson.course, { eager: true })
+  lessons: Lesson[];
 
   @Column({ select: false })
   @Exclude()

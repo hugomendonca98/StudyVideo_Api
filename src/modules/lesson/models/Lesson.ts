@@ -23,7 +23,7 @@ class Lesson {
   @Column()
   course_id: string;
 
-  @ManyToOne(() => Course, { eager: true })
+  @ManyToOne(() => Course)
   @JoinColumn({ name: 'course_id', referencedColumnName: 'id' })
   course: Course;
 
