@@ -2,9 +2,11 @@ import ensureAuthenticate from '@modules/user/middlewares/ensureAuthenticate';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import CourseController from '../controllers/CourseController';
+import SingleCourseController from '../controllers/SingleCourseController';
 
 const courseRouter = Router();
 const courseController = new CourseController();
+const singleCourseController = new SingleCourseController();
 
 courseRouter.post(
   '/',
@@ -20,6 +22,7 @@ courseRouter.post(
 );
 
 courseRouter.get('/', courseController.index);
+courseRouter.get('/:id', singleCourseController.index);
 
 courseRouter.delete('/:id', ensureAuthenticate, courseController.delete);
 
