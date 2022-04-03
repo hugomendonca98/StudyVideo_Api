@@ -54,8 +54,9 @@ export default class CourseController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { id } = request.params;
-    const { name, image_url, category_title, user_id } = request.body;
+    const { name, image_url, category_title } = request.body;
 
     const courseRepository = new CourseRepository();
     const userRepository = new UserRepository();
