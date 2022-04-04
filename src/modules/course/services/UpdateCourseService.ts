@@ -42,6 +42,8 @@ export default class UpdateCourseService {
     existCourse.name = name;
     existCourse.image_url = image_url;
     existCourse.category_id = existCategory.id;
+    existCourse.categories.id = existCategory.id;
+    existCourse.categories.title = existCategory.title;
     existCourse.user_id = user_id;
 
     const course = await this.courseRepository.save(existCourse);
