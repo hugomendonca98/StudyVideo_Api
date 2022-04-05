@@ -7,13 +7,12 @@ const lessonRouter = Router();
 const lessonController = new LessonController();
 
 lessonRouter.post(
-  '/',
+  '/:id',
   ensureAuthenticate,
   celebrate({
     [Segments.BODY]: {
       title: Joi.string().required(),
       video_url: Joi.string().required(),
-      course_id: Joi.string().required(),
     },
   }),
   lessonController.create,

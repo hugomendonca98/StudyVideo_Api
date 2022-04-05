@@ -8,7 +8,8 @@ import DeleteLessonService from '../services/DeleteLessonService';
 
 export default class LessonController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { title, video_url, course_id } = request.body;
+    const { title, video_url } = request.body;
+    const { id } = request.params;
 
     const lessonRepository = new LessonRepository();
     const courseRepostitory = new CourseRepository();
@@ -21,7 +22,7 @@ export default class LessonController {
     const lesson = await createLessonService.execute({
       title,
       video_url,
-      course_id,
+      course_id: id,
     });
 
     return response.json(lesson);
